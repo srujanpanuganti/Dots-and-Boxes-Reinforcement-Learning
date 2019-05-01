@@ -46,30 +46,57 @@ class q_learn:
 
     def maximum_q(self, current_state, possible_actions):
         max_q = 0
-        print('here',possible_actions)
+        index = 0
+        max_i = 0
+        optimal_action = 0
+        #print('here',possible_actions)
 
         for act in possible_actions:
             if self.q_table[str([current_state,act])] >= max_q:
                 max_q = max_q
                 optimal_action = act
-        return max_q,optimal_action
+                
+                max_i = index
+            index +=1
+        return max_q,optimal_action,max_i
 
     
-    def q_update(self, old_state_action, current_state ,reward, possible_actions):
+# =============================================================================
+#     def q_update(self, old_state_action, current_state ,reward, possible_actions):
+#         ### obtaining the old_q value
+#         #previous_state = old_state_action[0]
+#         q_value = self.q_table[str(old_state_action)]
+#         
+# # =============================================================================
+# #         if not possible_actions:
+# #             self.q_table[str(old_state_action)] = new_q_val
+# #             
+# # =============================================================================
+#         max_q,optimal_action,max_i = self.maximum_q(current_state, possible_actions)
+#         
+#         ### computing the new q-value to be updated into the q_table
+#         new_q_val = self.compute_q_value(q_value,reward,max_q)
+#         ### updating the q_value to the q_table    
+#         self.q_table[str(old_state_action)] = new_q_val
+# 
+#         return optimal_action
+# 
+# =============================================================================
+
+    def q_update(self, old_state_action, current_state ,reward):#, possible_actions):
         ### obtaining the old_q value
         #previous_state = old_state_action[0]
         q_value = self.q_table[str(old_state_action)]
         
-        
-        
-        max_q,optimal_action = self.maximum_q(current_state, possible_actions)
+        max_q,optimal_action,max_i = self.maximum_q(current_state, self.all_actions)
         
         ### computing the new q-value to be updated into the q_table
-        new_q_val = self.compute_q_value(self, q_value,reward,max_q)
+        new_q_val = self.compute_q_value(q_value,reward,max_q)
         ### updating the q_value to the q_table    
         self.q_table[str(old_state_action)] = new_q_val
 
         return optimal_action
+
 
 
     def epsilon_greedy(self, current_state, possible_actions):
@@ -77,13 +104,19 @@ class q_learn:
         
         pos_act = copy.deepcopy(possible_actions)
         
-        max_q, optimal_action = self.maximum_q(current_state, pos_act)
+        max_q, optimal_action, max_i = self.maximum_q(current_state, pos_act)
         
+        #print('posss',pos_act)
+        #print(optimal_action)
+        #print(max_i)
         if random.random() >=  self.epsilon:
             action = optimal_action
-            
+            #print('opt action',action)
         else:
-            np.delete(pos_act,i)
-            action = random.choice(pos_act)
+            if max_i > 1:
+                np.delete(pos_act,max_i)
+                action = random.choice(pos_act)
+            else:
+                action = random.choice(pos_act)
         return action
 

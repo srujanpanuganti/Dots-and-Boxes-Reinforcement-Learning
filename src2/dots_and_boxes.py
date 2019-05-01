@@ -19,6 +19,7 @@ class dots_and_boxes:
         self.total_actions = grid_size[0]*(grid_size[1]+1) + grid_size[1]*(grid_size[0]+1)
         self.all_states = list(itertools.product([0, 1], repeat=self.total_actions))
         self.all_actions = []
+        
         for i in self.all_states:
             if sum(i) == 1:
                 self.all_actions.append(i)
@@ -32,16 +33,19 @@ class dots_and_boxes:
             self.boxes[i] = 0
         self.current_state = self.all_states[0]
         self.game_over = False
+        self.boxes_filled = False
 
 
 
     def possible_actions_(self):
         possible_actions = []
+        #print('all',self.all_actions)
         for action in self.all_actions:
-            print('act',action)
-            if self.current_state & action == 0:
+            #print('act',action)
+            andList = [ x and y for x,y in zip(self.current_state,action)]
+            #print(andList)
+            if andList == [0,0,0,0,0,0,0,0,0,0,0,0]:
                 possible_actions.append(action)
-                
         return possible_actions
             
 
@@ -86,17 +90,18 @@ class dots_and_boxes:
             num_of_boxes_complete += 1
             box_created = True
         return box_created, num_of_boxes_complete
-    
+            
         
-    def is_game_complete(self, edges):            ### Tested and working
+    def is_game_complete(self):            ### Tested and working
         status = False
         all_values = []
     
-        for key,value in edges.items():
+        for key,value in self.edges.items():
             all_values.append(value)
         #print(all_values)
-        if sum(all_values) == len(edges):
+        if sum(all_values) == len(self.edges):
             status = True
+            self.boxes_filled = True
         else:
             status = False
             
@@ -117,31 +122,46 @@ class dots_and_boxes:
             
         return feedback, number_of_boxes_complete, box #, game_over
 
+
+    def game_done(self):
+# =============================================================================
+#         if self.current_state == self.all_states[-1]:
+#             self.game_over = True
+# =============================================================================
+        return self.current_state == self.all_states[-1]
+
+    
+
     def update_edge(self, action, edges):
         ### updating the edges where action took place
         edges[str(action)] = 1
 
-    def do_action(self,  action):
-    
+    def do_action(self,  action):            #break
+
         ### performing the action
         previous_state = self.current_state
 
-        if game_over(current_state):
-            self.game_over = True
 
-        if self.action in possible_actions_:
-            current_state = current_state | action
-            
+
+        if action in self.possible_actions_():
+            self.current_state = tuple( map(add, self.current_state, action))
+            #self.current_state = self.current_state | action
+        #print(current_state)
+
         self.update_edge(action, self.edges) 
         
         ### obtain the reward for the performed action
         reward, number_of_boxes_complete, is_box_created = self.reward_generate(self.boxes, self.edges, self.all_actions)
 
-        return current_state,reward, previous_state , number_of_boxes_complete #, game_over
-
-    def game_over(current_state):
-        return current_state == all_states[-1]
+# =============================================================================
+#         if self.current_state == self.all_states[-1]:
+#             self.game_over = True
+#             
+# =============================================================================
     
+
+        return self.current_state,reward, previous_state , number_of_boxes_complete, is_box_created #, game_over
+
     def reset(self):
         self.current_state = self.all_states[0]
         self.done = False
