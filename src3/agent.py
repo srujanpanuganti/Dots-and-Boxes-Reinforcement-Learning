@@ -5,9 +5,9 @@ Created on Mon Apr 29 14:10:16 2019
 @author: Srujan Panuganti
 """
 import numpy as np
-import itertools 
+#import itertools 
 from operator import add
-import random
+#import random
 from q_algorithm import q_learn
 
 
