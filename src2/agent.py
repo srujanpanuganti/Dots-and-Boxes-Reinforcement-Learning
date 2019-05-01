@@ -36,4 +36,6 @@ class q_agent:
                   q_class : q_learn,
                   current_state,
                   possible_actions):
-        return q_class.epsilon_greedy(current_state,possible_actions)
+        act = q_class.epsilon_greedy(current_state,possible_actions)
+        #print('act',act)
+        return act
