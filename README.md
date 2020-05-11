@@ -4,6 +4,15 @@ The project is implemented for 2X2 grid configuration and 3X3 grid configuration
 The Project can generate trained Q-table for games played between random agents
 This project can be used to view the results of Q-Agent played against a Random agent
 
+
+<p align="center">
+<img src="images/dotsandboxes.gif" alt="dotsandboxes">
+</p>
+<p align="center">
+<em>Dots and Boxes game</em>
+</p>
+
+
 ## Executing the project 
 Scripts in `Src2` folder has the implementation of the game for 2X2 grid. Train the network by executing
 
