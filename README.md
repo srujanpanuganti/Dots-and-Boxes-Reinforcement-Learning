@@ -6,7 +6,7 @@ This project can be used to view the results of Q-Agent played against a Random 
 
 
 <p align="center">
-<img src="images/dtosandboxes.gif" alt="dotsandboxes">
+<img src="images/dtosandboxes.gif" alt="dotsandboxes" width="260">
 </p>
 <p align="center">
 <em>Dots and Boxes game</em>
@@ -15,7 +15,7 @@ This project can be used to view the results of Q-Agent played against a Random 
 
 ## Executing the project 
 
-### 2X2 grid
+### 2X2 Grid
 Scripts in `Src2` folder has the implementation of the game for 2X2 grid. Train the network by executing
 
 `python3 test.py`
@@ -24,6 +24,7 @@ Scripts in `Src2` folder has the implementation of the game for 2X2 grid. Train 
 <img src="images/2x2.png" width="260">
 </p>
 
+### 3X3 Grid
 Scripts in `Src3` folder has the implementation of the game for 3x3 grid. Train the network by executing 
 
 `python3 test.py`
