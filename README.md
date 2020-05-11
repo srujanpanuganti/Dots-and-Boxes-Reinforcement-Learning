@@ -6,7 +6,7 @@ This project can be used to view the results of Q-Agent played against a Random 
 
 
 <p align="center">
-<img src="images/dotsandboxes.gif" alt="dotsandboxes">
+<img src="images/dtosandboxes.gif" alt="dotsandboxes">
 </p>
 <p align="center">
 <em>Dots and Boxes game</em>
