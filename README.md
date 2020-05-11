@@ -14,6 +14,8 @@ This project can be used to view the results of Q-Agent played against a Random 
 
 
 ## Executing the project 
+
+### 2X2 grid
 Scripts in `Src2` folder has the implementation of the game for 2X2 grid. Train the network by executing
 
 `python3 test.py`
