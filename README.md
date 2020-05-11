@@ -18,9 +18,18 @@ Scripts in `Src2` folder has the implementation of the game for 2X2 grid. Train 
 
 `python3 test.py`
 
+<p align="center">
+<img src="images/2x2.png" width="260">
+</p>
+
 Scripts in `Src3` folder has the implementation of the game for 3x3 grid. Train the network by executing 
 
 `python3 test.py`
+
+<p align="center">
+<img src="images/3x3.png" width="260">
+</p>
+
 
 The project is being implemented using Q- Learning with functional approximation. This part is not completed
 
