@@ -1,8 +1,8 @@
 # Project - Dots and Boxes using Reinforcement learning
 This project is an implementation of Dots and Boxes game using Reinforcement Learning - Q Learning Approach
-The project is implemented for 2X2 grid configuration and 3X3 grid configuration
-The Project can generate trained Q-table for games played between random agents
-This project can be used to view the results of Q-Agent played against a Random agent
+* The project is implemented for 2X2 grid configuration and 3X3 grid configuration
+* The Project can generate trained Q-table for games played between random agents
+* This project can be used to view the results of Q-Agent played against a Random agent
 
 
 <p align="center">
